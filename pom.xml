@@ -25,6 +25,47 @@
                     <failIfNoTests>true</failIfNoTests>
                 </configuration>
             </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.5</version>
+                    <executions>
+                        <execution>
+<!--                            <id>report</id>-->
+<!--&lt;!&ndash;                            <phase>verify</phase>&ndash;&gt;-->
+<!--                            <goals>-->
+<!--                                <goal>report</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                        <execution>-->
+<!--                            <id>prepare-agent</id>-->
+<!--&lt;!&ndash;                            <phase>initialize</phase>&ndash;&gt;-->
+<!--                            <goals>-->
+<!--                                <goal>prepare-agent</goal>-->
+<!--                            </goals>-->
+                            <id>check</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    <execution>
+                    <configuration>
+                        <rules>
+                            <rule>
+                                <limits>
+                                    <limit>
+                                        <counter>INSTRUCTION</counter>
+                                        <value>COVEREDRATIO</value>
+                                        <minimum>100%</minimum>
+                                    </limit>
+                                </limits>
+                            </rule>
+                        </rules>
+                    </configuration>
+                    </execution>
+                    </executions>
+                </plugin>
         </plugins>
     </build>
 
