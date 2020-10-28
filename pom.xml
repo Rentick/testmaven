@@ -5,15 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.netology</groupId>
-    <artifactId>testCiCD</artifactId>
+    <artifactId>statistics</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.6.2</junit.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.4.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -25,12 +33,54 @@
                     <failIfNoTests>true</failIfNoTests>
                 </configuration>
             </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.5</version>
-                    <executions>
-                        <execution>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                    <id>check</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <configuration>
+                        <rules>
+                            <rule>
+                                <limits>
+                                    <limit>
+                                        <counter>instruction</counter>
+                                        <value>coveredratio</value>
+                                        <minimum>100%</minimum>
+                                    </limit>
+                                </limits>
+                            </rule>
+                        </rules>
+                    </configuration>
+                </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+<!--                        <execution>-->
 <!--                            <id>report</id>-->
 <!--&lt;!&ndash;                            <phase>verify</phase>&ndash;&gt;-->
 <!--                            <goals>-->
@@ -43,51 +93,53 @@
 <!--                            <goals>-->
 <!--                                <goal>prepare-agent</goal>-->
 <!--                            </goals>-->
-                            <id>check</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    <execution>
-                    <configuration>
-                        <rules>
-                            <rule>
-                                <limits>
-                                    <limit>
-                                        <counter>INSTRUCTION</counter>
-                                        <value>COVEREDRATIO</value>
-                                        <minimum>100%</minimum>
-                                    </limit>
-                                </limits>
-                            </rule>
-                        </rules>
-                    </configuration>
-                    </execution>
-                    </executions>
-                </plugin>
-        </plugins>
-    </build>
+<!--                            </execution>-->
 
-    <dependencies>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+<!--                            <id>check</id>-->
+<!--                            <phase>verify</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>check</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    <execution>-->
+<!--                    <configuration>-->
+<!--                        <rules>-->
+<!--                            <rule>-->
+<!--                                <limits>-->
+<!--                                    <limit>-->
+<!--                                        <counter>Branch</counter>-->
+<!--                                        <value>COVEREDRATIO</value>-->
+<!--                                        <minimum>100%</minimum>-->
+<!--                                    </limit>-->
+<!--                                </limits>-->
+<!--                            </rule>-->
+<!--                        </rules>-->
+<!--                    </configuration>-->
+<!--                    </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 
-</project>
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.junit.jupiter</groupId>-->
+<!--            <artifactId>junit-jupiter-api</artifactId>-->
+<!--            <version>${junit.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.junit.jupiter</groupId>-->
+<!--            <artifactId>junit-jupiter-engine</artifactId>-->
+<!--            <version>${junit.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.junit.jupiter</groupId>-->
+<!--            <artifactId>junit-jupiter-params</artifactId>-->
+<!--            <version>${junit.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+
+<!--</project>-->
