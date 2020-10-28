@@ -65,8 +65,8 @@
                             <rule>
                                 <limits>
                                     <limit>
-                                        <counter>instruction</counter>
-                                        <value>coveredratio</value>
+                                        <counter>INSTRUCTION</counter>
+                                        <value>COVEREDRATIO</value>
                                         <minimum>100%</minimum>
                                     </limit>
                                 </limits>
