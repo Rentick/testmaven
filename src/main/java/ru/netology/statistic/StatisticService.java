@@ -9,11 +9,16 @@ public class StatisticService {
      */
 
     public long findMax(long[] incomes) {
+//        показать работу в дебаггере
         long current_max_index = 0;
         long current_max = incomes[0];
+//        берем за основу первый, перебираем по порядку
         for (long income : incomes)
-            if (current_max == income)
+//        каждый раз сравниваем
+            if (current_max < income)
+//        если тот, что у нас меньше чем текущий
                 current_max = income;
+//        выкладывваем в место него кладем
         return current_max;
     }
 }
